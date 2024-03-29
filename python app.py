@@ -27,7 +27,7 @@ def analyze_query(query):
     
     return response
 
-@app.route('/chatbot', methods=['POST'])
+@app.route('script.js', methods=['POST'])
 def chatbot():
     data = request.json
     user_message = data['message']
