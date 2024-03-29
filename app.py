@@ -13,7 +13,7 @@ nltk.download('punkt')
 nltk.download('wordnet')
 
 # Load intents from JSON file
-with open('data.json', 'r') as file:
+with open('.vscode/launch.json', 'r') as file:
     data = json.load(file)
 
 # Initialize lemmatizer
