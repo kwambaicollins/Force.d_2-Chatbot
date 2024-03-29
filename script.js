@@ -30,10 +30,10 @@ document.addEventListener("DOMContentLoaded", function() {
       })
       .then(response => response.json())
       .then(data => {
-  const botResponse = data.message; // Change 'response' to 'message'
-  appendMessage('Chatbot', botResponse);
-  chatLog.scrollTop = chatLog.scrollHeight;
-})
+        const botResponse = data.message; // Change 'response' to 'message'
+        appendMessage('Chatbot', botResponse);
+        chatLog.scrollTop = chatLog.scrollHeight;
+      })
       .catch(error => {
         console.error('Error:', error);
       });
