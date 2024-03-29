@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
             userInput.value = '';
             chatLog.scrollTop = chatLog.scrollHeight;
 
-            // Make AJAX request to Flask backend
+            // Mkin AJAX Flask backend
             fetch('/chatbot', {
                 method: 'POST',
                 headers: {
