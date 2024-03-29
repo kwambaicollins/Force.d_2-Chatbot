@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 
-app = Flask(__name__)
+app = Flask(Force.d_2-Chatbot)
 
 # Define responses for different types of queries
 responses = {
@@ -15,7 +15,7 @@ def analyze_query(query):
     query = query.lower()
     response = "I'm sorry, I don't understand that query."
     
-    # Check for keywords in the query and select appropriate response
+    # elect appropriate response
     if 'admission' in query:
         response = responses["admission"]
     elif 'courses' in query:
