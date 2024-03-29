@@ -5,7 +5,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch HTML in Chrome",
-            "file": " https://kwambaicollins.github.io/Force.d_2-Chatbot/chat1.html"
+            "file": "/chat1.html"
         }
     ]
 }
