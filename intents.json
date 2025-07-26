@@ -1,0 +1,196 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Hello",
+        "Hey",
+        "Good morning",
+        "Good afternoon",
+        "Good evening",
+        "What's up?"
+      ],
+      "responses": [
+        "Hello! I'm FORCE.D_2, your college assistant. How can I help you today?",
+        "Hi there! How can I assist you with your college queries?",
+        "Greetings! What would you like to know about our college?"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "Bye",
+        "Goodbye",
+        "See you later",
+        "Have a good day",
+        "I'm leaving"
+      ],
+      "responses": [
+        "Goodbye! Come back if you have more questions.",
+        "Have a great day!",
+        "See you soon! Don't hesitate to ask if you need anything else."
+      ]
+    },
+    {
+      "tag": "admission_requirements",
+      "patterns": [
+        "What are the admission requirements?",
+        "How do I apply?",
+        "What do I need to get admitted?",
+        "Admission criteria",
+        "What documents are required?"
+      ],
+      "responses": [
+        "Our admission requirements include: 1) Completed application form 2) High school transcripts 3) SAT/ACT scores 4) Personal statement 5) Letters of recommendation.",
+        "To apply, you'll need to submit your academic records, test scores, and a personal essay. Visit our admissions page for details.",
+        "The basic requirements are: minimum 3.0 GPA, standardized test scores, and completed application before the deadline."
+      ]
+    },
+    {
+      "tag": "application_deadline",
+      "patterns": [
+        "When is the application deadline?",
+        "Deadline for applications",
+        "Last date to apply",
+        "When do applications close?",
+        "Final submission date"
+      ],
+      "responses": [
+        "The regular decision deadline is January 15th, with early action due November 1st.",
+        "Applications for fall semester close on January 15th, and for spring semester on October 15th.",
+        "The final deadline for all applications is January 15th for the upcoming academic year."
+      ]
+    },
+    {
+      "tag": "tuition_fees",
+      "patterns": [
+        "How much is tuition?",
+        "What are the fees?",
+        "Tuition costs",
+        "How much does it cost to attend?",
+        "What's the tuition fee?"
+      ],
+      "responses": [
+        "Annual tuition is $15,000 for in-state students and $30,000 for out-of-state students. This doesn't include room and board.",
+        "Tuition fees are approximately $15,000 per year for residents, plus additional costs for housing and meals.",
+        "The current tuition rate is $500 per credit hour, with most full-time students taking 12-18 credits per semester."
+      ]
+    },
+    {
+      "tag": "financial_aid",
+      "patterns": [
+        "Do you offer financial aid?",
+        "What scholarships are available?",
+        "How can I get financial help?",
+        "Are there grants?",
+        "Work-study programs"
+      ],
+      "responses": [
+        "We offer various financial aid options including scholarships, grants, and work-study programs. Complete the FAFSA to determine eligibility.",
+        "Yes! We have merit-based and need-based scholarships. Visit our financial aid office for more information.",
+        "Financial aid is available through federal programs, institutional scholarships, and private donors. The priority deadline is March 1st."
+      ]
+    },
+    {
+      "tag": "majors",
+      "patterns": [
+        "What majors do you offer?",
+        "List of programs",
+        "Available degrees",
+        "What can I study here?",
+        "Academic programs"
+      ],
+      "responses": [
+        "We offer over 50 majors including Computer Science, Business Administration, Engineering, Biology, and Psychology.",
+        "Our college provides programs in Arts, Sciences, Engineering, and Professional Studies. Visit our academics page for the complete list.",
+        "Popular majors include: 1) Computer Science 2) Mechanical Engineering 3) Biology 4) Economics 5) Psychology"
+      ]
+    },
+    {
+      "tag": "housing",
+      "patterns": [
+        "What housing options are available?",
+        "Do you have dorms?",
+        "On-campus housing",
+        "Where can I live?",
+        "Student accommodation"
+      ],
+      "responses": [
+        "We offer several on-campus residence halls and apartment-style living. First-year students are required to live on campus.",
+        "Housing options include traditional dorms, suite-style residences, and campus apartments. Applications open March 1st.",
+        "On-campus housing costs approximately $5,000 per semester, including meal plans. Off-campus options are also available nearby."
+      ]
+    },
+    {
+      "tag": "faculty",
+      "patterns": [
+        "Who are the professors?",
+        "Faculty information",
+        "About the teachers",
+        "Who teaches here?",
+        "Department heads"
+      ],
+      "responses": [
+        "Our faculty includes renowned scholars and industry professionals. 80% hold terminal degrees in their fields.",
+        "You can browse faculty profiles by department on our website. We have a 15:1 student-faculty ratio.",
+        "Our professors are dedicated teachers and active researchers. Many have won national teaching awards."
+      ]
+    },
+    {
+      "tag": "campus_tour",
+      "patterns": [
+        "Can I visit the campus?",
+        "Schedule a tour",
+        "Open house dates",
+        "When can I see the college?",
+        "Campus visit"
+      ],
+      "responses": [
+        "Campus tours are available Monday-Friday at 10am and 2pm. Schedule online or call the admissions office.",
+        "We'd love to show you around! Virtual and in-person tours are available. Sign up on our website.",
+        "Open house events are held monthly. The next one is on October 15th - register on our admissions page."
+      ]
+    },
+    {
+      "tag": "library",
+      "patterns": [
+        "Where is the library?",
+        "Library hours",
+        "Study spaces",
+        "Research resources",
+        "How late is the library open?"
+      ],
+      "responses": [
+        "The main library is open Monday-Thursday 8am-10pm, Friday 8am-6pm, and Saturday 10am-4pm.",
+        "Our library offers 24/7 access during finals week. It's located in the Academic Quad, building B12.",
+        "The library has over 500,000 volumes, 200 study carrels, and group study rooms that can be reserved online."
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "Thank you",
+        "Thanks",
+        "Thanks for your help",
+        "I appreciate it",
+        "That's helpful"
+      ],
+      "responses": [
+        "You're welcome! Let me know if you need anything else.",
+        "Happy to help! Don't hesitate to ask more questions.",
+        "My pleasure! What else can I assist you with today?"
+      ]
+    },
+    {
+      "tag": "fallback",
+      "patterns": [],
+      "responses": [
+        "I'm not sure I understand. Could you rephrase that?",
+        "I'm still learning. Could you ask that differently?",
+        "I don't have that information right now. Try asking about admissions, academics, or campus life.",
+        "That's an interesting question. I'm better at answering questions about college programs and services."
+      ]
+    }
+  ]
+}
