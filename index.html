@@ -1,9 +1,12 @@
+Here's the updated `chat1.html` (which should really be named `index.html` to match your Flask template) that connects with your backend:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>College Chatbot</title>
+  <title>FORCE.D_2 College Chatbot</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -17,6 +20,7 @@
       --bot-bubble: #f1f1f1;
       --user-bubble: #4361ee;
       --user-text: white;
+      --error-color: #ff3333;
     }
     
     * {
@@ -94,6 +98,15 @@
       border-bottom-right-radius: 4px;
     }
     
+    .error-message {
+      align-self: center;
+      background-color: var(--error-color);
+      color: white;
+      border-radius: 18px;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+    
     .input-container {
       display: flex;
       padding: 1rem;
@@ -131,6 +144,11 @@
     
     #send-btn:hover {
       background-color: var(--secondary-color);
+    }
+    
+    #send-btn:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
     }
     
     .typing-indicator {
@@ -206,7 +224,7 @@
   </header>
   <div class="chat-container">
     <div id="chat-log">
-      <!-- Messages will appear here -->
+      <!-- Initial bot message -->
       <div class="message bot-message">
         Hello! I'm FORCE.D_2, your college assistant. How can I help you today?
         <div class="timestamp">Just now</div>
@@ -214,7 +232,7 @@
     </div>
     <div class="input-container">
       <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off">
-      <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+      <button id="send-btn" disabled><i class="fas fa-paper-plane"></i></button>
     </div>
   </div>
 
@@ -224,6 +242,12 @@
       const userInput = document.getElementById('user-input');
       const sendBtn = document.getElementById('send-btn');
       
+      // Enable send button only when there's text
+      userInput.addEventListener('input', function() {
+        sendBtn.disabled = userInput.value.trim() === '';
+      });
+      
+      // Add message to chat log
       function addMessage(message, isUser) {
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('message');
@@ -241,6 +265,16 @@
         chatLog.scrollTop = chatLog.scrollHeight;
       }
       
+      // Show error message
+      function showError(message) {
+        const errorDiv = document.createElement('div');
+        errorDiv.classList.add('error-message');
+        errorDiv.textContent = message;
+        chatLog.appendChild(errorDiv);
+        chatLog.scrollTop = chatLog.scrollHeight;
+      }
+      
+      // Show typing indicator
       function showTypingIndicator() {
         const typingDiv = document.createElement('div');
         typingDiv.classList.add('typing-indicator');
@@ -254,6 +288,7 @@
         chatLog.scrollTop = chatLog.scrollHeight;
       }
       
+      // Hide typing indicator
       function hideTypingIndicator() {
         const typingIndicator = document.getElementById('typing-indicator');
         if (typingIndicator) {
@@ -261,31 +296,109 @@
         }
       }
       
-      function handleSendMessage() {
+      // Send message to backend
+      async function sendMessageToBackend(message) {
+        try {
+          const response = await fetch('/messages/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message: message })
+          });
+          
+          if (!response.ok) {
+            throw new Error(`Server responded with status ${response.status}`);
+          }
+          
+          const data = await response.json();
+          return data.message;
+        } catch (error) {
+          console.error('Error sending message:', error);
+          throw error;
+        }
+      }
+      
+      // Handle sending a message
+      async function handleSendMessage() {
         const message = userInput.value.trim();
         if (message) {
+          // Add user message to chat
           addMessage(message, true);
           userInput.value = '';
+          sendBtn.disabled = true;
           
           // Show typing indicator
           showTypingIndicator();
           
-          // Simulate bot response after a delay
-          setTimeout(() => {
+          try {
+            // Send to backend and get response
+            const botResponse = await sendMessageToBackend(message);
+            
+            // Remove typing indicator and add bot response
             hideTypingIndicator();
-            addMessage("I'm a simulated response. In a real implementation, I would connect to a chatbot API here.", false);
-          }, 1500);
+            addMessage(botResponse, false);
+          } catch (error) {
+            hideTypingIndicator();
+            showError("Sorry, I'm having trouble connecting. Please try again later.");
+          }
         }
       }
       
+      // Send button click handler
       sendBtn.addEventListener('click', handleSendMessage);
       
+      // Enter key handler
       userInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' && !sendBtn.disabled) {
           handleSendMessage();
         }
       });
+      
+      // Focus input field on load
+      userInput.focus();
     });
   </script>
 </body>
 </html>
+```
+
+Key improvements for backend connectivity:
+
+1. **Proper API Integration**:
+   - Added async/await for API calls to `/messages/` endpoint
+   - Proper error handling for failed requests
+   - Correct Content-Type headers for JSON
+
+2. **Enhanced UI Feedback**:
+   - Disabled send button when input is empty
+   - Error messages for failed requests
+   - Maintained typing indicators during API calls
+
+3. **Better User Experience**:
+   - Auto-focus on input field on page load
+   - Disabled send button during message processing
+   - Clear input after sending
+
+4. **Robust Message Handling**:
+   - Proper message formatting before sending
+   - Error display when backend is unavailable
+   - Maintained all existing UI features while adding backend connectivity
+
+5. **Production-Ready Features**:
+   - Loading states during API calls
+   - Network error handling
+   - Proper scroll behavior
+
+To use this with your Flask backend:
+
+1. Save this as `templates/index.html` in your Flask project
+2. Make sure your Flask app is running (`python app.py`)
+3. The frontend will automatically connect to your backend's `/messages/` endpoint
+4. All message processing will be handled by your NLP backend
+
+The frontend will now:
+- Send user messages to your Flask backend
+- Display the bot's responses
+- Handle network errors gracefully
+- Provide visual feedback during processing
